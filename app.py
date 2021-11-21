@@ -13,8 +13,11 @@ for GPU in GPUs:
 
 app = Flask(__name__)
 
+MODEL_PATH = 'model-blood-cell.h5'
+model = load_model(MODEL_PATH)
+model.make_predict_function()
 
-def model_predict(img_path, model):
+def model_predict(img_path):
     img = image.load_img(img_path, target_size=(160, 120))
 
     x = image.img_to_array(img)
@@ -41,15 +44,12 @@ def index():
 @app.route('/predict', methods=['GET', 'POST'])
 def upload():
     f = request.files['file']
-    MODEL_PATH = 'model-blood-cell.h5'
-
-    model = load_model(MODEL_PATH)
-    model.make_predict_function()
+    
     basepath = os.path.dirname(__file__)
-        file_path = os.path.join(
-            basepath, secure_filename(f.filename))
+    file_path = os.path.join(basepath, secure_filename(f.filename))
     f.save(file_path)
-    predictions = model_predict(file_path, model)
+    
+    predictions = model_predict(file_path)
     return cells[np.argmax(predictions)] + " cells were detected. " + descriptions[np.argmax(predictions)]
 
 
