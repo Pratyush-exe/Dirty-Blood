@@ -1,0 +1,57 @@
+{% extends "base.html" %} {% block content %}
+
+<p class="lead" style="padding-top: 50px;">Just Click on "Upload the Blood Image" Button and then click on predict to view the results.</p>
+
+<div>
+	<form id="upload-file" method="post" enctype="multipart/form-data">
+	    <label for="imageUpload" class="upload-label" style="
+	    border-radius: 20px;
+	    margin-top: 40px;
+	    margin-bottom: 20px;">
+            Upload the Blood Image
+        </label>
+        <input type="file" name="file" id="imageUpload" accept=".png, .jpg, .jpeg">
+    </form>
+
+    <div class="image-section" style="display:none;">
+        <div class="img-preview">
+            <div id="imagePreview">
+            </div>
+        </div>
+        <div>
+            <button type="button" class="btn btn-primary btn-lg " id="btn-predict">Predict</button>
+        </div>
+    </div>
+
+    <div class="loader" style="display:none;"></div>
+
+    <p id="result">
+        <span> </span>
+    </p>
+
+</div>
+
+<div class="row">
+    <div class="col-md-6" style="margin:2rem auto 0 auto;padding-bottom: 100px;">
+        <p class="display-4" id="about" name="about" style="text-align: center;">
+            About
+        </p>
+        <hr>
+        <p class="lead" style="text-align: center;">
+            Dirty Blood: A blood cell classifier
+            <br>
+            The diagnosis of blood-based diseases often involve identifying and characterizing patient blood samples. Automated methods to detect and classify blood subtypes have important medical applications. Our CNN-based model does the same and classifies the blood cells into four categories i.e [Eosinophil, Lymphocyte, Monocyte, Neutrophil] with an accuracy of 86%.
+        </p>
+    </div>
+<div class="container-fluid">
+    <div class="row">
+        <footer class="fixed-bottom navbar-light" style="background: black;color: white;text-align: center;">
+            <p>Thanks for using Dirty Blood! </p>
+            Code with ❤<b><a href="link for github" style="color:#009999"> Dirty Blood</a>  </b>
+	</footer> 
+    </div> 
+ </div>
+</div>
+            
+            
+{% endblock %}
