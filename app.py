@@ -45,9 +45,10 @@ def upload():
 
     model = load_model(MODEL_PATH)
     model.make_predict_function()
-
-    basePath = os.path.dirname(__file__)
-    file_path = os.path.join(basePath, secure_filename(f.filename))
+    basepath = os.path.dirname(__file__)
+        file_path = os.path.join(
+            basepath, secure_filename(f.filename))
+    f.save(file_path)
     predictions = model_predict(file_path, model)
     return cells[np.argmax(predictions)] + " cells were detected. " + descriptions[np.argmax(predictions)]
 
